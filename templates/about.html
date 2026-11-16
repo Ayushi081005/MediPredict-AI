@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | MediPredict AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <span class="logo-icon">✚</span>
+            MediPredict<span class="logo-ai">AI</span>
+        </a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/#features">Features</a>
+            <a href="/about">About</a>
+        </div>
+    </nav>
+
+    <section class="about-section">
+        <div class="about-content">
+            <span class="section-label">ABOUT THE PROJECT</span>
+            <h2>Machine learning for <span>health awareness.</span></h2>
+            <p>
+                MediPredict AI is an educational machine learning
+                application that explores relationships between
+                selected symptoms and disease patterns.
+            </p>
+            <p>
+                It uses a dataset containing 41 disease classes and
+                131 unique symptoms. Multiple traditional machine
+                learning algorithms were evaluated for classification.
+            </p>
+            <p>
+                The system is a prototype for academic purposes and
+                is not intended to provide medical diagnoses.
+            </p>
+            <a href="/predict" class="primary-button">Try Symptom Analysis →</a>
+        </div>
+    </section>
+
+</body>
+</html>

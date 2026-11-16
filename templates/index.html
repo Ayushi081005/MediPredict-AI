@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediPredict AI | Intelligent Health Insights</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <span class="logo-icon">✚</span>
+            MediPredict<span class="logo-ai">AI</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+        </div>
+
+        <a href="/predict" class="nav-button">Get Started <span>↗</span></a>
+    </nav>
+
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    MACHINE LEARNING POWERED HEALTH INSIGHTS
+                </div>
+
+                <h1>
+                    Understand your symptoms.
+                    <span>Explore possibilities.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Make sense of your symptoms with an intelligent
+                    machine learning system that explores possible
+                    disease patterns and provides useful health information.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="/predict" class="primary-button">
+                        Start Symptom Analysis <span>→</span>
+                    </a>
+
+                    <a href="#about" class="secondary-button">
+                        Discover the Project
+                    </a>
+                </div>
+
+                <div class="trust-note">
+                    <span>✦</span>
+                    Educational AI tool · Not a medical diagnosis
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="orb orb-one"></div>
+                <div class="orb orb-two"></div>
+
+                <div class="medical-card">
+
+                    <div class="card-top">
+                        <div>
+                            <span class="small-label">SYSTEM OVERVIEW</span>
+                            <h3>Symptom Intelligence</h3>
+                        </div>
+
+                        <span class="live-indicator">● ONLINE</span>
+                    </div>
+
+                    <div class="brain-visual">
+                        <div class="brain-circle">
+                            <div class="brain-inner">✚</div>
+                            <div class="pulse-ring"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-divider"></div>
+
+                    <div class="metric-row">
+
+                        <div class="metric">
+                            <h2>41</h2>
+                            <p>Disease Classes</p>
+                        </div>
+
+                        <div class="metric">
+                            <h2>131</h2>
+                            <p>Symptoms</p>
+                        </div>
+
+                        <div class="metric">
+                            <h2>04</h2>
+                            <p>ML Models</p>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="footer-dot"></span>
+                        Machine learning engine ready
+                    </div>
+
+                </div>
+
+                <div class="floating-tag tag-top">
+                    <span>✦</span> Intelligent Analysis
+                </div>
+
+                <div class="floating-tag tag-bottom">
+                    <span>✓</span> Symptom Recognition
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="stats-section" id="features">
+
+            <div class="section-heading">
+                <span class="section-label">THE TECHNOLOGY</span>
+                <h2>Intelligence behind every insight.</h2>
+                <p>
+                    A machine learning project designed to explore
+                    relationships between symptoms and disease patterns.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">⌕</div>
+                    <h3>Symptom Analysis</h3>
+                    <p>
+                        Select from a collection of symptoms and
+                        analyze their patterns using machine learning.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✧</div>
+                    <h3>ML-Based Prediction</h3>
+                    <p>
+                        Explore possible disease classifications
+                        using trained machine learning algorithms.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">♡</div>
+                    <h3>Health Information</h3>
+                    <p>
+                        Explore disease descriptions and
+                        dataset-provided precaution information.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="about-section" id="about">
+
+            <div class="about-content">
+                <span class="section-label">ABOUT MEDIPREDICT AI</span>
+
+                <h2>
+                    Technology meets
+                    <span>health awareness.</span>
+                </h2>
+
+                <p>
+                    MediPredict AI is an educational machine learning
+                    project that uses symptom-based classification to
+                    explore disease patterns. It combines data
+                    preprocessing, predictive modelling and disease
+                    information retrieval in one web application.
+                </p>
+
+                <a href="/predict" class="primary-button">
+                    Explore the Predictor →
+                </a>
+            </div>
+
+            <div class="about-decoration">
+                <div class="decoration-circle">
+                    <span>✚</span>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="disclaimer-section">
+            <span>ⓘ</span>
+            <div>
+                <h3>Important Medical Disclaimer</h3>
+                <p>
+                    MediPredict AI is an educational prototype, not a
+                    medical diagnostic system. Its predictions are based
+                    on a limited dataset and must not replace professional
+                    medical advice, diagnosis or treatment.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <a href="/" class="logo">
+            <span class="logo-icon">✚</span>
+            MediPredict<span class="logo-ai">AI</span>
+        </a>
+
+        <p>Built with machine learning and a purpose for health awareness.</p>
+
+        <span>© 2026 MediPredict AI</span>
+    </footer>
+
+</body>
+</html>

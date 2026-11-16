@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Symptom Checker | MediPredict AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="{{ url_for('static', filename='js/predictor.js') }}" defer></script>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="/" class="logo">
+        <span class="logo-icon">✚</span>
+        MediPredict<span class="logo-ai">AI</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/#features">Features</a>
+        <a href="/about">About</a>
+    </div>
+
+    <a href="/" class="nav-button">Back to Home</a>
+</nav>
+
+
+<main class="predictor-page">
+
+    <section class="predictor-heading">
+        <span class="section-label">AI SYMPTOM ANALYSIS</span>
+
+        <h1>Let's understand your <span>symptoms.</span></h1>
+
+        <p>
+            Select the symptoms you want to analyze. Our machine learning
+            model will examine the selected symptom pattern and return
+            a possible disease classification.
+        </p>
+    </section>
+
+
+    <form method="POST" action="{{ url_for('predict') }}" id="symptomForm">
+
+        <section class="symptom-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <h2>Select your symptoms</h2>
+                    <p>Search and choose all applicable symptoms.</p>
+                </div>
+
+                <span class="symptom-total">
+                    {{ symptoms|length }} available
+                </span>
+            </div>
+
+
+            <div class="search-wrapper">
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="symptomSearch"
+                    placeholder="Search symptoms..."
+                    autocomplete="off"
+                >
+            </div>
+
+
+            <div class="selection-heading">
+                <h3>Your selected symptoms</h3>
+
+                <button type="button" id="clearButton" class="clear-button">
+                    Clear all
+                </button>
+            </div>
+
+
+            <div id="selectedSymptoms" class="selected-symptoms">
+                <span class="empty-selection">No symptoms selected yet.</span>
+            </div>
+
+            <div class="selection-count">
+                <span id="selectedCount">0</span> symptoms selected
+            </div>
+
+
+            <div class="symptom-grid" id="symptomGrid">
+
+                {% for symptom in symptoms %}
+
+                <label class="symptom-option"
+                       data-symptom="{{ symptom|replace('_', ' ')|lower }}">
+
+                    <input
+                        type="checkbox"
+                        name="symptoms"
+                        value="{{ symptom }}"
+                        {% if symptom in selected_symptoms %}checked{% endif %}
+                    >
+
+                    <span class="custom-check"></span>
+
+                    <span class="symptom-name">
+                        {{ symptom|replace('_', ' ')|title }}
+                    </span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+            <p id="noResults" class="no-results" hidden>
+                No matching symptoms found.
+            </p>
+
+
+            <div class="predict-action">
+                <p>Review your selected symptoms before continuing.</p>
+
+                <button type="submit" class="primary-button">
+                    Analyze Symptoms <span>→</span>
+                </button>
+            </div>
+
+        </section>
+
+    </form>
+
+
+    {% if error %}
+    <section class="result-panel error-panel">
+        <h2>Unable to analyze symptoms</h2>
+        <p>{{ error }}</p>
+    </section>
+    {% endif %}
+
+
+    {% if prediction %}
+
+    <section class="result-panel" id="predictionResult">
+
+        <div class="result-top">
+            <span class="section-label">ANALYSIS COMPLETED</span>
+            <span class="result-status">✓ Prediction generated</span>
+        </div>
+
+<!-- Symptoms submitted for this prediction -->
+<div class="result-symptoms">
+    <h3>Symptoms You Selected</h3>
+
+    <div class="result-symptom-list">
+        {% for symptom in selected_symptoms %}
+            <span class="result-symptom-tag">
+                {{ symptom|replace('_', ' ')|title }}
+            </span>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Model information -->
+<div class="model-information">
+    <div class="model-info-icon">✦</div>
+    <div>
+        <h3>Prediction Model</h3>
+        <p>Random Forest Classifier</p>
+        <span>Machine learning model trained on the project's symptom dataset</span>
+    </div>
+</div>
+
+
+        <h2>Your prediction result</h2>
+
+        <div class="prediction-highlight">
+            <span>MODEL-PREDICTED DISEASE CLASS</span>
+            <h3>{{ prediction }}</h3>
+            <p>
+                This is the classification returned by the trained
+                machine learning model for your selected symptoms.
+            </p>
+        </div>
+
+
+        <div class="result-information">
+            <h3>About this disease</h3>
+            <p>{{ description }}</p>
+        </div>
+
+
+        <div class="result-information">
+            <h3>Dataset-provided precaution information</h3>
+
+            {% if precautions %}
+                <ul>
+                    {% for precaution in precautions %}
+                        <li>{{ precaution }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No precaution information is available in the dataset.</p>
+            {% endif %}
+        </div>
+
+
+        
+<div class="result-disclaimer">
+    <strong>Important Medical Disclaimer</strong>
+    <p>
+        This prediction is generated by an educational machine learning
+        prototype using a limited symptom dataset. It is not a medical
+        diagnosis and must not be used to make treatment decisions.
+        Symptoms can have multiple causes. Please consult a qualified
+        healthcare professional for medical advice.
+    </p>
+</div>
+
+
+        <a href="{{ url_for('predict') }}" class="secondary-button">
+            Start a New Analysis
+        </a>
+
+    </section>
+
+    {% endif %}
+
+</main>
+
+
+<footer>
+    <a href="/" class="logo">
+        <span class="logo-icon">✚</span>
+        MediPredict<span class="logo-ai">AI</span>
+    </a>
+
+    <p>Machine learning for health awareness.</p>
+
+    <span>© 2026 MediPredict AI</span>
+</footer>
+
+</body>
+</html>
